@@ -22,7 +22,7 @@ class MJoin extends MY_Model {
                             , customers.addressLine1
                             , SUM(IF(orders.customerNumber IS NOT NULL, 1, 0)) as numberOfOrder");
         $this->db->from($this->table);
-        $this->db->join('orders', 'orders.customerNumber = customers.customerNumber');
+        $this->db->join('orders', 'orders.customerNumber = customers.customerNumber', 'left');
         $this->db->group_by('customers.customerNumber');
     }
 
